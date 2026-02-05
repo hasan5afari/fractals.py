@@ -1,0 +1,8 @@
+{
+    "axiom": "XF",
+    "production_rules": {
+        "X": "X+YF++YF-FX--FXFX-YF+",
+        "Y": "-FX+YFYF++YF+FX--FX-Y"
+    },
+    "dtheta": 60
+}
