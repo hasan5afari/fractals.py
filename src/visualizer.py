@@ -8,15 +8,15 @@ class Visualizer:
     def __init__(
         self,
         window_size: tuple[int, int],
-        start: tuple[int, int],
-        length: int,
+        start_position: tuple[int, int],
+        line_length: int,
         ratio: float,
         dtheta: float,
     ) -> None:
-        self._start = start
-        self._x = start[0]
-        self._y = start[1]
-        self._length = length
+        self._start_position = start_position
+        self._x = start_position[0]
+        self._y = start_position[1]
+        self._line_length = line_length
         self._ratio = ratio
         self._theta = math.pi / 2
         self._dtheta = dtheta
@@ -28,8 +28,8 @@ class Visualizer:
     def _draw(self, lindenmayer_system: LindenmayerSystem) -> None:
         for character in lindenmayer_system.get_sentence():
             if character == "F" or character == "G":
-                x, x_new = (self._x, self._x - self._length * math.cos(self._theta))
-                y, y_new = (self._y, self._y - self._length * math.sin(self._theta))
+                x, x_new = (self._x, self._x - self._line_length * math.cos(self._theta))
+                y, y_new = (self._y, self._y - self._line_length * math.sin(self._theta))
                 pygame.draw.line(self._screen, (255, 255, 255), (x, y), (x_new, y_new))
                 self._x = x_new
                 self._y = y_new
@@ -59,11 +59,11 @@ class Visualizer:
                     self._draw(lindenmayer_system)
                     lindenmayer_system.iterate()
 
-                    # reset x, y, theta and update length
-                    self._x = self._start[0]
-                    self._y = self._start[1]
+                    # reset x, y, theta and update line_length
+                    self._x = self._start_position[0]
+                    self._y = self._start_position[1]
                     self._theta = math.pi / 2
-                    self._length *= self._ratio
+                    self._line_length *= self._ratio
 
             pygame.display.flip()
 
