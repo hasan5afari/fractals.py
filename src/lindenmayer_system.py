@@ -1,18 +1,31 @@
+import json
+
+
 class LindenmayerSystem:
+    @classmethod
+    def from_json(cls, path: str) -> tuple["LindenmayerSystem", float]:
+        with open(path, mode="r", encoding="utf-8") as file:
+            data = json.load(file)
+
+        return (cls(data["axiom"], data["production_rules"]), data["dtheta"])
+
     def __init__(self, axiom: str, production_rules: dict[str, str]) -> None:
-        self.axiom = axiom
-        self.sentence = axiom
-        self.production_rules = production_rules
+        self._axiom = axiom
+        self._production_rules = production_rules
+        self._sentence = axiom
 
     def __str__(self) -> str:
-        return self.sentence
+        return self._sentence
 
     def iterate(self) -> str:
         new_sentence = ""
 
-        for character in self.sentence:
-            new_sentence += self.production_rules.get(character, character)
+        for character in self._sentence:
+            new_sentence += self._production_rules.get(character, character)
 
-        self.sentence = new_sentence
+        self._sentence = new_sentence
 
-        return self.sentence
+        return self._sentence
+
+    def get_sentence(self) -> str:
+        return self._sentence
