@@ -1,0 +1,7 @@
+{
+    "axiom": "F",
+    "production_rules": {
+        "F": "FF+[+F-F-F]-[-F+F+F]"
+    },
+    "dtheta": 30
+}
