@@ -40,4 +40,4 @@ we have:
 
 #### Triangle fractal
 
-<img src="https://github.com/hasan5afari/fractals.py/tree/main/previews/Triangle.gif" width="500" height="350"/>
+<img src="https://github.com/hasan5afari/fractals.py/blob/main/previews/Triangle.gif" width="500" height="350"/>
